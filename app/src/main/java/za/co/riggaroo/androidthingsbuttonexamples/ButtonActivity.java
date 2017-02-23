@@ -3,6 +3,7 @@ package za.co.riggaroo.androidthingsbuttonexamples;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.GpioCallback;
@@ -34,6 +35,7 @@ public class ButtonActivity extends Activity {
                 public boolean onGpioEdge(Gpio gpio) {
                     try {
                         Log.i(TAG, "GPIO value changed:" + gpio.getValue());
+                        Toast.makeText(getApplicationContext(), "Button changed, yay!", Toast.LENGTH_SHORT).show();
                         // Return true to continue listening to events
                         return true;
                     } catch (IOException e) {
