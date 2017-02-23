@@ -25,6 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+    compile 'com.google.android.things.contrib:driver-button:0.2'
     provided 'com.google.android.things:androidthings:0.2-devpreview'
     testCompile 'junit:junit:4.12'
 }
