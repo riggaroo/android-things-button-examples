@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.GpioCallback;
@@ -48,7 +49,11 @@ public class ButtonActivity extends Activity {
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
-        Log.d(TAG, "onKeyDown:" + keyCode + ". event:" + event.toString());
+        if (keyCode == KeyEvent.KEYCODE_SPACE) {
+            Log.d(TAG, "onKeyDown:" + keyCode + ". event:" + event.toString());
+            Toast.makeText(getApplicationContext(), "Button pressed, yay!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 
