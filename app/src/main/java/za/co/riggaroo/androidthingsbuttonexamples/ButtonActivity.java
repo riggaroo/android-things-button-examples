@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.google.android.things.contrib.driver.button.Button;
 import com.google.android.things.contrib.driver.button.ButtonInputDriver;
@@ -22,9 +23,8 @@ public class ButtonActivity extends Activity {
         setContentView(R.layout.activity_button);
 
         try {
-            mInputDriver = new ButtonInputDriver(BoardDefaults.getGPIOForButton(), Button.LogicState.PRESSED_WHEN_HIGH,
-                    KeyEvent.KEYCODE_A // the keycode to send
-            );
+            mInputDriver = new ButtonInputDriver(BoardDefaults.getGPIOForButton(), Button.LogicState.PRESSED_WHEN_LOW,
+                    KeyEvent.KEYCODE_SPACE);
             mInputDriver.register();
         } catch (IOException e) {
             Log.e(TAG, "couldn't configure the button...", e);
@@ -34,9 +34,9 @@ public class ButtonActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_A) {
-            // do something awesome
+        if (keyCode == KeyEvent.KEYCODE_SPACE) {
             Log.d(TAG, "onKeyEvent triggered:" + keyCode);
+            Toast.makeText(getApplicationContext(), "Button Pressed, Yay!", Toast.LENGTH_SHORT).show();
             return true; // indicate we handled the event
         }
         return super.onKeyDown(keyCode, event);
